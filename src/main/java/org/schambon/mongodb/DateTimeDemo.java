@@ -42,9 +42,10 @@ public class DateTimeDemo {
 
         // finally we register all that in a registry that we provide in the
         CodecRegistry registry = fromRegistries(
+                MongoClient.getDefaultCodecRegistry(),
                 fromCodecs(zonedDateTimeCodec),
-                fromProviders(provider),
-                MongoClient.getDefaultCodecRegistry());
+                fromProviders(provider)
+        );
 
         MongoClient client = new MongoClient(new MongoClientURI("mongodb://localhost:27017", new MongoClientOptions.Builder().codecRegistry(registry)));
 
